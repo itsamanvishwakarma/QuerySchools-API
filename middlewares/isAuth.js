@@ -1,5 +1,6 @@
 const TokenModel = require("../models/tokenModel");
 const sanitize = require("mongo-sanitize");
+const logger = require("../middlewares/log");
 const isAuth = (req, res, next) => {
   const token = sanitize(req.params.authToken);
   //find  token in database
@@ -14,17 +15,35 @@ const isAuth = (req, res, next) => {
         message: "Invalid token",
       });
     }
+
+    //check if token is expired
+    if (token.tokenExpiration < Date.now()) {
+      return res.status(401).send({
+        message: "Token expired create a new one.",
+      });
+    }
+
     // check if token.dailyLimitExpiration is less than current time then make token.dailyLimit = 5
-    let check = false;
     if (token.dailyLimitExpiration < Date.now()) {
       token.dailyLimit = 5;
       token.dailyLimitExpiration = Date.now() + 86400000;
-      check = true;
-      async function saveToken() {
-        await token.save();
+      async function updateToken() {
+        try {
+          await token.save();
+        } catch (err) {
+          logger.log({
+            level: "error",
+            message: err.message,
+            timestamp: new Date(),
+          });
+          return res.status(500).send({
+            message: "Error in the servers try later",
+          });
+        }
       }
-      saveToken();
+      updateToken();
     }
+
     // check if token.dailyLimit is less than 0 then return error
     if (token.dailyLimit <= 0) {
       return res.status(401).send({
@@ -32,14 +51,22 @@ const isAuth = (req, res, next) => {
       });
     }
     // check if token.dailyLimit is greater than 0 then decrement token.dailyLimit by 1
-    if (token.dailyLimit > 0 && check == false) {
+    if (token.dailyLimit > 0 && token.dailyLimitExpiration > Date.now()) {
       token.dailyLimit--;
-      async function saveToken() {
-        await token.save();
+      async function updateToken() {
+        try {
+          await token.save();
+        } catch (err) {
+          logger.log({
+            level: "error",
+            message: err.message,
+            timestamp: new Date(),
+          });
+        }
       }
-      saveToken();
+      updateToken();
     }
-
+    // if all conditions are met then move forward
     next();
   });
 };
