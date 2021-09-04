@@ -4,6 +4,7 @@ const app = express();
 const router = express.Router();
 const db = require("./config/keys").mongoURI;
 const tokenRouter = require("./routes/tokenRouter");
+const schoolsRouter = require("./routes/schoolsRouter");
 const logger = require("./middlewares/log");
 const PORT = process.env.PORT || 3000;
 mongoose
@@ -35,6 +36,8 @@ app.get("/", (req, res) => {
 });
 
 app.use("/api/token", tokenRouter);
+
+app.use("/api/schools", schoolsRouter);
 
 app.listen(PORT, () => {
   console.log(`Server listening on port ${PORT}`);
