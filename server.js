@@ -10,7 +10,6 @@ const PORT = process.env.PORT || 3000;
 mongoose
   .connect(db, {
     useNewUrlParser: true,
-    useCreateIndex: true,
     useUnifiedTopology: true,
   })
   .then(() => {
@@ -20,7 +19,7 @@ mongoose
     console.log("Error connecting to MongoDB", err);
     logger.log({
       level: "error",
-      message: error.message,
+      message: err.message,
       timestamp: new Date(),
     });
   });
