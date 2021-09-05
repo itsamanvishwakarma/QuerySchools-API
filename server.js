@@ -6,6 +6,9 @@ const db = require("./config/keys").mongoURI;
 const tokenRouter = require("./routes/tokenRouter");
 const schoolsRouter = require("./routes/schoolsRouter");
 const logger = require("./middlewares/log");
+const swaggerUi = require("swagger-ui-express");
+const swaggerDocument = require("./swagger/swagger.json");
+const cssOptions = require("./swagger/cssOptions");
 const PORT = process.env.PORT || 3000;
 mongoose
   .connect(db, {
@@ -38,6 +41,11 @@ app.use("/api/token", tokenRouter);
 
 app.use("/api/schools", schoolsRouter);
 
+app.use(
+  "/api-docs",
+  swaggerUi.serve,
+  swaggerUi.setup(swaggerDocument, cssOptions)
+);
 app.listen(PORT, () => {
   console.log(`Server listening on port ${PORT}`);
 });

@@ -1,0 +1,699 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "version": "1.0.0",
+        "title": "QuerySchools-API",
+        "description": "Query schools API is a free API which provides data of schools present all over the India.",
+        "license": {
+            "name": "MIT",
+            "url": "https://opensource.org/licenses/MIT"
+        },
+        "contact": {
+            "name": "QuerSchools-API",
+            "url": "schools.rnet.ml"
+        }
+    },
+    "servers": [
+        {
+            "url": "/",
+            "description": "Server-1"
+        },
+        {
+            "url": "/",
+            "description": "Server-2"
+        }
+    ],
+    "tags": [
+        {
+            "name": "QuerySchools-API",
+            "description": "API to get details of schools"
+        }
+    ],
+    "consumes": [
+        "application/json"
+    ],
+    "produces": [
+        "application/json"
+    ],
+    "paths": {
+      "/api/token/create": {
+            
+        "post": {
+            "tags": [
+                "QuerySchools-API"
+            ],
+            "summary": "Generate your authToken",
+            "parameters": [
+                {
+                    "name": "body",
+                    "in": "body",
+                    "required": true,
+                    "schema": {
+                        "$ref": "#/definitions/email"
+                    }
+                }
+            ],
+            "produces": [
+                "application/json"
+            ],
+            "responses": {
+                "200": {
+                    "description": "OK",
+                    "schema": {
+                        "$ref": "#/definitions/Token"
+                    }
+                },
+                "404": {
+                    "description": "Server Error"
+                }
+            }
+        }
+    },
+    "/api/schools/get/{token}/aff/{affCode}":{
+      "parameters": [
+        {
+            "name": "token",
+            "in": "path",
+            "required": true,
+            "description": "Enter your auth-token",
+            "type": "string"
+        },
+        {
+            "name": "affCode",
+            "in": "path",
+            "required": true,
+            "description": "Enter Affiliation Code",
+            "type": "string"
+        }
+    ],
+    "get": {
+        "tags": [
+            "QuerySchools-API"
+        ],
+        "summary": "Get school details by schools affiliation code",
+        "responses": {
+            "200": {
+                "description": "OK",
+                "schema": {
+                    "$ref": "#/definitions/Schools"
+                }
+            },
+            "404": {
+                "description": "Server Error"
+            }
+        }
+
+    }
+    },
+    "/api/schools/get/{token}/name/{schoolName}": {
+      "parameters": [
+        {
+            "name": "token",
+            "in": "path",
+            "required": true,
+            "description": "Enter your auth-token",
+            "type": "string"
+        },
+        {
+            "name": "schoolName",
+            "in": "path",
+            "required": true,
+            "description": "Enter School Name",
+            "type": "string"
+        }
+    ],
+    "get": {
+        "tags": [
+            "QuerySchools-API"
+        ],
+        "summary": "Get school details by schools affiliation code",
+        "responses": {
+            "200": {
+                "description": "OK",
+                "schema": {
+                    "$ref": "#/definitions/Schools"
+                }
+            },
+            "404": {
+                "description": "Server Error"
+            }
+        }
+
+    }
+    },
+        "/api/schools/get/{token}/pin/{pinCode}": {
+            "parameters": [
+                {
+                    "name": "token",
+                    "in": "path",
+                    "required": true,
+                    "description": "Enter your auth-token",
+                    "type": "string"
+                },
+                {
+                    "name": "pinCode",
+                    "in": "path",
+                    "required": true,
+                    "description": "Enter Pin-Code",
+                    "type": "string"
+                }
+            ],
+            "get": {
+                "tags": [
+                    "QuerySchools-API"
+                ],
+                "summary": "Get all schools by city pinCode",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Schools"
+                        }
+                    },
+                    "404": {
+                        "description": "Server Error"
+                    }
+                }
+            }
+        },
+        "/api/schools/get/{token}/city/{districtName}": {
+            "parameters": [
+                {
+                    "name": "token",
+                    "in": "path",
+                    "required": true,
+                    "description": "Enter your auth-token",
+                    "type": "string"
+                },
+                {
+                    "name": "districtName",
+                    "in": "path",
+                    "required": true,
+                    "description": "Enter City Name",
+                    "type": "string"
+                }
+            ],
+            "get": {
+                "tags": [
+                    "QuerySchools-API"
+                ],
+                "summary": "Get all schools of a city",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Schools"
+                        }
+                    },
+                    "404": {
+                        "description": "Server Error"
+                    }
+                }
+
+            }
+        },
+        "/api/schools/get/{token}/region/{regionName}": {
+          "parameters": [
+            {
+                "name": "token",
+                "in": "path",
+                "required": true,
+                "description": "Enter your auth-token",
+                "type": "string"
+            },
+            {
+                "name": "regionName",
+                "in": "path",
+                "required": true,
+                "description": "Enter Region Name",
+                "type": "string"
+            }
+        ],
+        "get": {
+            "tags": [
+                "QuerySchools-API"
+            ],
+            "summary": "Get all schools of a region",
+            "responses": {
+                "200": {
+                    "description": "OK",
+                    "schema": {
+                        "$ref": "#/definitions/Schools"
+                    }
+                },
+                "404": {
+                    "description": "Server Error"
+                }
+            }
+  
+        }
+        },
+        "/api/schools/get/{token}/state/{stateName}": {
+            "parameters": [
+                {
+                    "name": "token",
+                    "in": "path",
+                    "required": true,
+                    "description": "Enter your auth-token",
+                    "type": "string"
+                },
+                {
+                    "name": "stateName",
+                    "in": "path",
+                    "required": true,
+                    "description": "Enter State",
+                    "type": "string"
+                }
+            ],
+            "get": {
+                "tags": [
+                    "QuerySchools-API"
+                ],
+                "summary": "Get all schools of a state",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Schools"
+                        }
+                    },
+                    "404": {
+                        "description": "Server Error"
+                    }
+                }
+            }
+        }
+    },
+
+
+
+    "definitions": {
+        "id": {
+            "properties": {
+                "uuid": {
+                    "type": "string"
+                }
+            }
+        },
+        "email": {
+            "properties": {
+                "email": {
+                    "type":"string"
+                }
+            }
+        },
+        "Token": {
+            "type": "object",
+            "properties": {
+                "message": {
+                  "type": "string"
+                },
+                "data": {
+                  "type": "object",
+                  "properties": {
+                    "email": {
+                      "type": "string"
+                    },
+                    "token": {
+                      "type": "string"
+                    },
+                    "tokenExpiration": {
+                      "type": "string"
+                    },
+                    "dailyLimit": {
+                      "type": "integer"
+                    },
+                    "dailyLimitExpiration": {
+                      "type": "string"
+                    },
+                    "_id": {
+                      "type": "string"
+                    },
+                    "createdAt": {
+                      "type": "string"
+                    },
+                    "updatedAt": {
+                      "type": "string"
+                    },
+                    "__v": {
+                      "type": "integer"
+                    }
+                  }
+        }
+              }
+        },
+        "Schools": {
+            "type": "object",
+        "properties": {
+          "_id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "aff_no": {
+            "type": "string"
+          },
+          "state": {
+            "type": "string"
+          },
+          "district": {
+            "type": "string"
+          },
+          "region": {
+            "type": "string"
+          },
+          "address": {
+            "type": "string"
+          },
+          "pincode": {
+            "type": "string"
+          },
+          "ph_no": {
+            "type": "string"
+          },
+          "off_ph_no": {
+            "type": "string"
+          },
+          "res_ph_no": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "year_found": {
+            "type": "string"
+          },
+          "date_opened": {
+            "type": "string"
+          },
+          "princi_name": {
+            "type": "string"
+          },
+          "sex": {
+            "type": "string"
+          },
+          "princi_qual": {
+            "type": "string"
+          },
+          "princi_exp_adm": {
+            "type": "string"
+          },
+          "princi_exp_teach": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          },
+          "aff_type": {
+            "type": "string"
+          },
+          "aff_start": {
+            "type": "string"
+          },
+          "aff_end": {
+            "type": "string"
+          },
+          "soc_name": {
+            "type": "string"
+          },
+          "l_nearest_railway": {
+            "type": "string"
+          },
+          "l_nearest_railway_dist": {
+            "type": "string"
+          },
+          "l_nearest_police": {
+            "type": "string"
+          },
+          "l_nearest_police_dist": {
+            "type": "string"
+          },
+          "l_nearest_bank": {
+            "type": "string"
+          },
+          "l_nearest_bank_dist": {
+            "type": "string"
+          },
+          "n_category": {
+            "type": "string"
+          },
+          "n_medium": {
+            "type": "string"
+          },
+          "n_school_type": {
+            "type": "string"
+          },
+          "e_nursery_sections": {
+            "type": "string"
+          },
+          "e_nursery_students": {
+            "type": "string"
+          },
+          "e_i_v_sections": {
+            "type": "string"
+          },
+          "e_i_v_students": {
+            "type": "string"
+          },
+          "e_vi_viii_sections": {
+            "type": "string"
+          },
+          "e_vi_viii_students": {
+            "type": "string"
+          },
+          "e_ix_x_sections": {
+            "type": "string"
+          },
+          "e_ix_x_students": {
+            "type": "string"
+          },
+          "e_xi_xii_sections": {
+            "type": "string"
+          },
+          "e_xi_xii_students": {
+            "type": "string"
+          },
+          "i_classrooms_no": {
+            "type": "string"
+          },
+          "i_classrooms_length": {
+            "type": "string"
+          },
+          "i_classrooms_breadth": {
+            "type": "string"
+          },
+          "i_composite_lab_no": {
+            "type": "string"
+          },
+          "i_composite_lab_length": {
+            "type": "string"
+          },
+          "i_composite_lab_breadth": {
+            "type": "string"
+          },
+          "i_phy_lab_no": {
+            "type": "string"
+          },
+          "i_phy_lab_length": {
+            "type": "string"
+          },
+          "i_phy_lab_breadth": {
+            "type": "string"
+          },
+          "i_chem_lab_no": {
+            "type": "string"
+          },
+          "i_chem_lab_length": {
+            "type": "string"
+          },
+          "i_chem_lab_breadth": {
+            "type": "string"
+          },
+          "i_bio_lab_no": {
+            "type": "string"
+          },
+          "i_bio_lab_length": {
+            "type": "string"
+          },
+          "i_bio_lab_breadth": {
+            "type": "string"
+          },
+          "i_math_lab_no": {
+            "type": "string"
+          },
+          "i_math_lab_length": {
+            "type": "string"
+          },
+          "i_math_lab_breadth": {
+            "type": "string"
+          },
+          "i_cs_lab_no": {
+            "type": "string"
+          },
+          "i_cs_lab_length": {
+            "type": "string"
+          },
+          "i_cs_lab_breadth": {
+            "type": "string"
+          },
+          "i_home_lab_no": {
+            "type": "string"
+          },
+          "i_home_lab_length": {
+            "type": "string"
+          },
+          "i_home_lab_breadth": {
+            "type": "string"
+          },
+          "i_library_no": {
+            "type": "string"
+          },
+          "i_library_length": {
+            "type": "string"
+          },
+          "i_library_breadth": {
+            "type": "string"
+          },
+          "i_other_lab_no": {
+            "type": "string"
+          },
+          "i_other_lab_length": {
+            "type": "string"
+          },
+          "i_other_lab_breadth": {
+            "type": "string"
+          },
+          "t_ntts_no": {
+            "type": "string"
+          },
+          "t_ntts_trained": {
+            "type": "string"
+          },
+          "t_ntts_untrained": {
+            "type": "string"
+          },
+          "t_prts_no": {
+            "type": "string"
+          },
+          "t_prts_trained": {
+            "type": "string"
+          },
+          "t_prts_untrained": {
+            "type": "string"
+          },
+          "t_tgts_no": {
+            "type": "string"
+          },
+          "t_tgts_trained": {
+            "type": "string"
+          },
+          "t_tgts_untrained": {
+            "type": "string"
+          },
+          "t_librarians_no": {
+            "type": "string"
+          },
+          "t_librarians_trained": {
+            "type": "string"
+          },
+          "t_librarians_untrained": {
+            "type": "string"
+          },
+          "t_ptis_no": {
+            "type": "string"
+          },
+          "t_ptis_trained": {
+            "type": "string"
+          },
+          "t_ptis_untrained": {
+            "type": "string"
+          },
+          "t_pgts_no": {
+            "type": "string"
+          },
+          "t_pgts_trained": {
+            "type": "string"
+          },
+          "t_pgts_untrained": {
+            "type": "string"
+          },
+          "t_exec_no": {
+            "type": "string"
+          },
+          "t_exec_trained": {
+            "type": "string"
+          },
+          "t_exec_untrained": {
+            "type": "string"
+          },
+          "p_area_meter": {
+            "type": "string"
+          },
+          "p_area_acre": {
+            "type": "string"
+          },
+          "p_area_builtup_meter": {
+            "type": "string"
+          },
+          "p_num_sites": {
+            "type": "string"
+          },
+          "p_area_playground": {
+            "type": "string"
+          },
+          "p_urinal_type": {
+            "type": "string"
+          },
+          "p_boys_urinal": {
+            "type": "string"
+          },
+          "p_girls_urinal": {
+            "type": "string"
+          },
+          "p_potable_water": {
+            "type": "string"
+          },
+          "p_health_cert": {
+            "type": "string"
+          },
+          "f_total_books": {
+            "type": "string"
+          },
+          "f_periodicals": {
+            "type": "string"
+          },
+          "f_dailies": {
+            "type": "string"
+          },
+          "f_reference_books": {
+            "type": "string"
+          },
+          "f_magazine": {
+            "type": "string"
+          },
+          "f_swimming_pool": {
+            "type": "string"
+          },
+          "f_indoor_games": {
+            "type": "string"
+          },
+          "f_dance_rooms": {
+            "type": "string"
+          },
+          "f_gym": {
+            "type": "string"
+          },
+          "f_music_rooms": {
+            "type": "string"
+          },
+          "f_hostel": {
+            "type": "string"
+          },
+          "f_health_checkup": {
+            "type": "string"
+          }
+      }
+        }
+    }
+}
