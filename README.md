@@ -1,7 +1,10 @@
 # Query Schools API
 
 Query schools API is a free API which provides data of schools present all over the India.
-Generate your authToken from here
+
+Generate your authToken from [**here**](https://schools.rnet.ml/api-docs)
+
+## Test API [**here**](https://schools.rnet.ml/api-docs)
 
 ##### Each authToken have a limit of 50 query/day for 1 month. All tokens will be expired after one month from the date of creation.
 
