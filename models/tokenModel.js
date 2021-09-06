@@ -21,7 +21,7 @@ const tokenSchema = new mongoose.Schema(
     dailyLimit: {
       type: Number,
       required: true,
-      default: 5,
+      default: 50,
     },
     dailyLimitExpiration: {
       type: Date,

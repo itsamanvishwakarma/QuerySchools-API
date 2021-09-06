@@ -25,7 +25,7 @@ const isAuth = (req, res, next) => {
 
     // check if token.dailyLimitExpiration is less than current time then make token.dailyLimit = 5
     if (token.dailyLimitExpiration < Date.now()) {
-      token.dailyLimit = 5;
+      token.dailyLimit = 50;
       token.dailyLimitExpiration = Date.now() + 86400000;
       async function updateToken() {
         try {
