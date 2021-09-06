@@ -19,22 +19,34 @@ tokenRouter.post(
     const email = sanitize(req.body.email);
     // check for email validation
     if (!email) {
-      return res.status(400).send("Email is required");
+      return res.status(400).send({
+        status: "error",
+        message: "Email is required",
+      });
     }
     // check for email contains @
     if (typeof email !== "string" || !email.includes("@")) {
-      return res.status(400).send("Email is invalid");
+      return res.status(400).send({
+        status: "error",
+        message: "Email is not valid",
+      });
     }
     // verify email domain
     const emailDomain = email.split("@")[1];
     if (disposableEmailCheck(emailDomain)) {
-      return res.status(400).send("Email domain is not allowed");
+      return res.status(400).send({
+        status: "error",
+        message: "Email domain is not allowed",
+      });
     }
 
     // check for email existence
     const userEmail = await TokenModel.findOne({ email });
     if (userEmail) {
-      return res.status(400).send("Email already exists");
+      return res.status(400).send({
+        status: "error",
+        message: "Email already exists",
+      });
     }
 
     // generate 11 digit alphanumeric token
@@ -49,7 +61,10 @@ tokenRouter.post(
         .status(200)
         .send({ message: "Token generated successfully", data: savedUser });
     } catch (error) {
-      res.status(500).send("Error occurred while generating token");
+      res.status(500).send({
+        status: "error",
+        message: "Error occurred while generating token",
+      });
       // log the error
       logger.log({
         level: "error",
