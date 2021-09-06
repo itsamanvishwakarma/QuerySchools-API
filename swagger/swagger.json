@@ -5,12 +5,13 @@
         "title": "QuerySchools-API",
         "description": "Query schools API is a free API which provides data of schools present all over the India.",
         "license": {
-            "name": "MIT",
-            "url": "https://opensource.org/licenses/MIT"
+            "name": "Github",
+            "url": "https://github.com/rai28/QuerySchools-API"
         },
         "contact": {
-            "name": "QuerSchools-API",
-            "url": "/"
+            "name": "QuerySchools-API",
+            "url": "https://schools.rnet.ml",
+            "git": "www.github.com/QuerySchools-API"
         }
     },
     "servers": [

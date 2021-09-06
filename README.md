@@ -2,7 +2,7 @@
 
 Query schools API is a free API which provides data of schools present all over the India.
 
-Generate your authToken from [**here**](https://schools.rnet.ml/api-docs)
+Generate your authToken from [**here**](https://schools.rnet.ml/)
 
 ## Test API [**here**](https://schools.rnet.ml/api-docs)
 

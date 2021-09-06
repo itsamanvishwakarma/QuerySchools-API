@@ -10,7 +10,7 @@ var cssOptions = {
      border: 5px solid #e5e5e5 !important;
     }
     `,
-  customSiteTitle: "QuerySchools-API",
+  customSiteTitle: "QuerySchools-API-Doc",
 };
 
 module.exports = cssOptions;
