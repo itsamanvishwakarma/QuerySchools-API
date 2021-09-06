@@ -10,7 +10,7 @@
         },
         "contact": {
             "name": "QuerSchools-API",
-            "url": "schools.rnet.ml"
+            "url": "/"
         }
     },
     "servers": [
@@ -126,7 +126,7 @@
         "tags": [
             "QuerySchools-API"
         ],
-        "summary": "Get school details by schools affiliation code",
+        "summary": "Get school details by school name",
         "responses": {
             "200": {
                 "description": "OK",
@@ -288,13 +288,6 @@
 
 
     "definitions": {
-        "id": {
-            "properties": {
-                "uuid": {
-                    "type": "string"
-                }
-            }
-        },
         "email": {
             "properties": {
                 "email": {
