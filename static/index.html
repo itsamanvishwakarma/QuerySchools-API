@@ -1,0 +1,42 @@
+<html>
+  <head>
+  </head>
+  <title> QuerySchools-API</title>
+  <link rel="stylesheet" href="./index.css">
+  <body>
+    <header>
+      <a href="/api-docs"><h1 class="header-heading">QuerySchools-API</h1></a>
+    </header>
+    <div class="wrapper">
+      <h1 class='title'>Generate Token</h1>
+      <form id="token-form">
+        <div class="form-group">
+          <label for="email" class="form-label">Email</label>
+          <input type="text" class="form-input" required id ="email" placeholder="Enter your email">
+        </div>
+        <button class="btn-primary" type="submit">Generate Token</button>  
+      </form>
+      <div class="token-result" id="after-token-result">
+        
+        </div>
+      <div class="err" id= "errs">
+        
+      </div>
+      </div>
+    </div>
+    <div class=rules-container>
+      <h3 class="dim-t">Rules</h3>
+      <ul>
+        <li>Each token has a daily limit of 50 queries.</li>
+        <li>Tokens expire after 1 month.</li>
+        <li>Tokens created with disposable emails will be blocked</li>
+      </ul>
+      <div class="api-doc">
+        <h2 class="dim-t">Read - <a class="api-doc-title" href="/api-docs">API Documentation</a></h2>
+      </div>
+    </div>
+    <script src="./client.js"></script>
+  </body>
+    <!--end of wrapper-->
+</html>
+

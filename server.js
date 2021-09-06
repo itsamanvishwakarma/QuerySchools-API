@@ -9,6 +9,7 @@ const logger = require("./middlewares/log");
 const swaggerUi = require("swagger-ui-express");
 const swaggerDocument = require("./swagger/swagger.json");
 const cssOptions = require("./swagger/cssOptions");
+const path = require("path");
 const PORT = process.env.PORT || 3000;
 mongoose
   .connect(db, {
@@ -33,9 +34,8 @@ app.use(
   })
 );
 
-app.get("/", (req, res) => {
-  res.send("It works !!");
-});
+// load index.html on root from static folder
+app.use(express.static(path.join(__dirname, "static")));
 
 app.use("/api/token", tokenRouter);
 
