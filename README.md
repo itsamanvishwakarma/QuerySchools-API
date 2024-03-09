@@ -171,7 +171,7 @@ Generate your authToken from [**here**](https://schools.rnet.ml/)
 
 ### Installation
 
-create a **.env** file paste **_MONGO*URI = \_yourMongoConnectionString*_**
+create a **.env** file paste **MONGO_URI** = \_yourMongoConnectionString\*\_\*\*
 then install packages
 
 ```javascript
